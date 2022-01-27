@@ -34,7 +34,7 @@ int main()
         thermostat.update(temp_double);
         
         std::string command;
-        
+        //we are entering a command
         printf("enter a command: \n");
         
         std::cin >> command;
