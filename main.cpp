@@ -2,7 +2,6 @@
 #include "Thermostat.h"
 #include "Motor.h"
 
-Thermostat thermostat;
 
 int main()
 {
@@ -12,7 +11,8 @@ int main()
     thermostat.raiseTemp();
     std::cout << thermostat.getDesiredTemp() << "\n";
     */
-
+    Motor* fan = new Motor();
+    Thermostat* thermostat = new Thermostat(fan);
     while (true)
     {
         std::string temp;
@@ -32,7 +32,7 @@ int main()
             continue;
         }
         
-        thermostat.update(temp_double);
+        thermostat->update(temp_double);
         
         std::string command;
         //we are entering a command
@@ -42,18 +42,23 @@ int main()
         
         if (command == "+")
         {
-            thermostat.raiseTemp();
+            thermostat->raiseTemp();
         }
         else if (command == "-")
         {
-            thermostat.lowerTemp();
+            thermostat->lowerTemp();
+        } else if (command == "q") {
+            delete fan;
+            delete thermostat;
+            return 0;
         }
         else 
         {
             printf("invalid command \n");
         }
-        printf("desired temp: %.1f, cur temp: %.1f \n", thermostat.getDesiredTemp(), temp_double); 
-        printf("current state: %d \n\n", thermostat.getState());
+        printf("desired temp: %.1f, cur temp: %.1f \n", thermostat->getDesiredTemp(), temp_double); 
+        printf("current thermostat state: %d \n\n", thermostat->getState());
+        printf("current fan speed: %d \n\n", fan->getMotorSpeed());
     }
 
     return 0;
