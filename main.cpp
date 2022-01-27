@@ -15,7 +15,7 @@ int main()
     while (true)
     {
         std::string temp;
-        
+        // We are entering the temperature
         printf("enter the temperature: \n");
         
         std::cin >> temp;
