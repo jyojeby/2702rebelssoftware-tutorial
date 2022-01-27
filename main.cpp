@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Thermostat.h"
+#include "Motor.h"
 
 Thermostat thermostat;
 
